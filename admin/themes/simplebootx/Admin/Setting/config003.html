@@ -1,0 +1,93 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<foreach name="games" item="vg">
+				<li <if condition="$gameid eq $vg['id']"> class="active" </if> ><a href="{:U('setting/config',array('gameid'=>$vg['id']))}">{$vg.name}</a></li>
+			</foreach>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('setting/config_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">游戏名称:</label>
+					<div class="controls">
+						<input type="text" name="gamename" value="{$gamename}" style="color: #0e0e0e" disabled>
+						<input type="hidden" name="gameid" value="{$gameid}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">牌型大小第一位的概率:</label>
+					<div class="controls">
+						<input type="text" name="pfr" value="{$configs['pfr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">牌型大小第二位的概率:</label>
+					<div class="controls">
+						<input type="text" name="psr" value="{$configs['psr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">牌型大小第三位的概率:</label>
+					<div class="controls">
+						<input type="text" name="ptr" value="{$configs['ptr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">牌型大小第四位的概率:</label>
+					<div class="controls">
+						<input type="text" name="por" value="{$configs['por']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">牌型大小第五位的概率:</label>
+					<div class="controls">
+						<input type="text" name="pir" value="{$configs['pir']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄牌型大小第一位的概率:</label>
+					<div class="controls">
+						<input type="text" name="sfr" value="{$configs['sfr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄牌型大小第二位的概率:</label>
+					<div class="controls">
+						<input type="text" name="ssr" value="{$configs['ssr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄牌型大小第三位的概率:</label>
+					<div class="controls">
+						<input type="text" name="str" value="{$configs['str']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄牌型大小第四位的概率:</label>
+					<div class="controls">
+						<input type="text" name="sor" value="{$configs['sor']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄牌型大小第五位的概率:</label>
+					<div class="controls">
+						<input type="text" name="sir" value="{$configs['sir']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">抽水百分比:</label>
+					<div class="controls">
+						<input type="text" name="rate" value="{$configs['rate']}">
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

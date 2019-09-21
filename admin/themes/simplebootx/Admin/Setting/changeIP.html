@@ -1,0 +1,28 @@
+<admintpl file="header" />
+<link href="__PUBLIC__/simpleboot/css/jquery-confirm.css" rel="stylesheet">
+<script src="__PUBLIC__/simpleboot/bootstrap/js/jquery-confirm.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <form method="post" class="form-horizontal js-ajax-form" action="{:U('setting/changeIP_active')}">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">后台:</label>
+                <select name="id" id="su">
+                    <!--<option value ="{:F('qunhei_url')}">群黑</option>-->
+                    <!--<option value ="{:F('baidu_url')}">百度</option>-->
+                    <!--<option value="{:F('hangzhou_url')}">杭州</option>-->
+                    <!--<option value="{:F('jiuyaowan_url')}">就要玩</option>-->
+                    <option value="{:F('yxd_url')}">电玩城</option>
+                    <!--<option value="{:F('cs_url')}">测试</option>-->
+                </select>
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary  js-ajax-submit">{:L('SAVE')}</button>
+        </div>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

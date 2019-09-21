@@ -1,0 +1,73 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:U('setting/competitionConfig')}">添加竞猜</a></li>
+        <li><a href="{:U('setting/competitionlist')}">竞猜开奖</a></li>
+    </ul>
+    <form class="form-horizontal js-ajax-form" method="post" action="{:U('setting/competitionConfig_post')}">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">竞猜标题:</label>
+                <div class="controls">
+                    <input type="text" name="title" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">链接url:</label>
+                <div class="controls">
+                    <input type="text" name="image_url" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">答案A:</label>
+                <div class="controls">
+                    <input type="text" name="answerA" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">答案B:</label>
+                <div class="controls">
+                    <input type="text" name="answerB" value="">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">开始时间:</label>
+                <div class="controls">
+                    <input type="text" name="begin_time" value="1970-01-01 00:00:00">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">封盘时间:</label>
+                <div class="controls">
+                    <input type="text" name="end_time" value="1970-01-01 00:00:00">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">赔率A:</label>
+                <div class="controls">
+                    <input type="text" name="rateA" value="2">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">赔率B:</label>
+                <div class="controls">
+                    <input type="text" name="rateB" value="2">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">抽水率:</label>
+                <div class="controls">
+                    <input type="text" name="wate_rate" value="0.05">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary  js-ajax-submit">{:L('SAVE')}</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <foreach name="games" item="vg">
+            <li <if condition="$gameid eq $vg['id']"> class="active" </if> ><a href="{:U('setting/config',array('gameid'=>$vg['id']))}">{$vg.name}</a></li>
+        </foreach>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form" action="{:U('setting/config_post')}">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">游戏名称:</label>
+                <div class="controls">
+                    <input type="text" name="gamename" value="{$gamename}" style="color: #0e0e0e" disabled>
+                    <input type="hidden" name="gameid" value="{$gameid}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">777的概率:</label>
+                <div class="controls">
+                    <input type="text" name="1" value="{$configs['1']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">西瓜的概率:</label>
+                <div class="controls">
+                    <input type="text" name="2" value="{$configs['2']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">车厘子的概率:</label>
+                <div class="controls">
+                    <input type="text" name="3" value="{$configs['3']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">葡萄的概率:</label>
+                <div class="controls">
+                    <input type="text" name="4" value="{$configs['4']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">草莓的概率:</label>
+                <div class="controls">
+                    <input type="text" name="5" value="{$configs['5']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">芒果的概率:</label>
+                <div class="controls">
+                    <input type="text" name="6" value="{$configs['6']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">橙子的概率:</label>
+                <div class="controls">
+                    <input type="text" name="7" value="{$configs['7']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">苹果的概率:</label>
+                <div class="controls">
+                    <input type="text" name="8" value="{$configs['8']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">luck的概率:</label>
+                <div class="controls">
+                    <input type="text" name="9" value="{$configs['9']}">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+        </div>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

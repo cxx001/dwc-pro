@@ -1,0 +1,93 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<foreach name="games" item="vg">
+				<li <if condition="$gameid eq $vg['id']"> class="active" </if> > <a href="{:U('setting/config',array('gameid'=>$vg['id']))}" >{$vg.name}</a></li>
+			</foreach>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('setting/config_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">游戏名称:</label>
+					<div class="controls">
+						<input type="text" name="gamename" value="{$gamename}" style="color: #0e0e0e" disabled>
+						<input type="hidden" name="gameid" value="{$gameid}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">当前下注总额金鲨银鲨&lt飞禽走兽时 金鲨银鲨概率为:</label>
+					<div class="controls">
+						<input type="text" name="jyx" value={$configs['jyx']}>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">当前下注总额金鲨银鲨&gt飞禽走兽时 金鲨银鲨概率为:</label>
+					<div class="controls">
+						<input type="text" name="jyd" value="{$configs['jyd']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">当前下注总额飞禽&lt走兽时 飞禽概率为:</label>
+					<div class="controls">
+						<input type="text" name="fqx" value="{$configs['fqx']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">当前下注总额飞禽&gt走兽时 飞禽概率为:</label>
+					<div class="controls">
+						<input type="text" name="fqd" value="{$configs['fqd']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄6倍注位概率:</label>
+					<div class="controls">
+						<input type="text" name="ssr" value="{$configs['ssr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄8倍注位概率:</label>
+					<div class="controls">
+						<input type="text" name="ser" value="{$configs['ser']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">系统庄12倍注位概率:</label>
+					<div class="controls">
+						<input type="text" name="str" value="{$configs['str']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">玩家庄6倍注位概率:</label>
+					<div class="controls">
+						<input type="text" name="psr" value="{$configs['psr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">玩家庄8倍注位概率:</label>
+					<div class="controls">
+						<input type="text" name="per" value="{$configs['per']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">玩家庄12倍注位概率:</label>
+					<div class="controls">
+						<input type="text" name="ptr" value="{$configs['ptr']}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">抽水百分比:</label>
+					<div class="controls">
+						<input type="text" name="rate" value="{$configs['rate']}">
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

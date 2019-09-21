@@ -1,0 +1,104 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <foreach name="games" item="vg">
+            <li <if condition="$gameid eq $vg['id']"> class="active" </if> ><a href="{:U('setting/config',array('gameid'=>$vg['id']))}">{$vg.name}</a></li>
+        </foreach>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form" action="{:U('setting/config_post')}">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">游戏名称:</label>
+                <div class="controls">
+                    <input type="text" name="gamename" value="{$gamename}" style="color: #0e0e0e" disabled>
+                    <input type="hidden" name="gameid" value="{$gameid}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第一名:</label>
+                <div class="controls">
+                    <input type="text" name="fwg" value="金币:{$configs['fwg']}">
+                    <input type="text" name="fwn" value="点券:{$configs['fwn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第二名:</label>
+                <div class="controls">
+                    <input type="text" name="swg" value="金币:{$configs['swg']}">
+                    <input type="text" name="swn" value="点券:{$configs['swn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第三名:</label>
+                <div class="controls">
+                    <input type="text" name="twg" value="金币:{$configs['twg']}">
+                    <input type="text" name="twn" value="点券:{$configs['twn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第四名:</label>
+                <div class="controls">
+                    <input type="text" name="owg" value="金币:{$configs['owg']}">
+                    <input type="text" name="own" value="点券:{$configs['own']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第五名:</label>
+                <div class="controls">
+                    <input type="text" name="ffwg" value="金币:{$configs['ffwg']}">
+                    <input type="text" name="ffwn" value="点券:{$configs['ffwn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第六名:</label>
+                <div class="controls">
+                    <input type="text" name="siwg" value="金币:{$configs['siwg']}">
+                    <input type="text" name="siwn" value="点券:{$configs['siwn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第七名:</label>
+                <div class="controls">
+                    <input type="text" name="sewg" value="金币:{$configs['sewg']}">
+                    <input type="text" name="sewn" value="点券:{$configs['sewn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第八名:</label>
+                <div class="controls">
+                    <input type="text" name="ewg" value="金币:{$configs['ewg']}">
+                    <input type="text" name="ewn" value="点券:{$configs['ewn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第九名:</label>
+                <div class="controls">
+                    <input type="text" name="nwg" value="金币:{$configs['nwg']}">
+                    <input type="text" name="nwn" value="点券:{$configs['nwn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">第十名:</label>
+                <div class="controls">
+                    <input type="text" name="tewg" value="金币:{$configs['tewg']}">
+                    <input type="text" name="tewn" value="点券:{$configs['tewn']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">十名外:</label>
+                <div class="controls">
+                    <input type="text" name="nowg" value="金币:{$configs['nowg']}">
+                    <input type="text" name="nown" value="点券:{$configs['nown']}">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+        </div>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

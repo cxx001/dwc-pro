@@ -1,0 +1,96 @@
+<admintpl file="header" />
+<link href="__PUBLIC__/simpleboot/css/jquery-confirm.css" rel="stylesheet">
+<script src="__PUBLIC__/simpleboot/bootstrap/js/jquery-confirm.js"></script>
+<style>
+    .confirm-class {
+        width: 40%;
+        margin: auto;
+    }
+</style>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:U('setting/awardsAllConfig')}">奖券全局设置</a></li>
+        <li><a href="{:U('setting/awardsConfig')}">奖券设置</a></li>
+        <li class="active"><a href="{:U('setting/giftlist')}">兑换奖品列表</a></li>
+    </ul>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th align="left">描述</th>
+            <th align="left">图片名</th>
+            <th align="left">名称</th>
+            <th align="left">所需物品</th>
+            <th align="left">vip限制</th>
+            <th width="left">所需数量</th>
+            <th width="left">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="list" item="ss">
+            <tr>
+                <td>{$ss.desc}</td>
+                <td>{$ss.icon}</td>
+                <td>{$ss.name}</td>
+                <td>{$ss.typename}</td>
+                <td>{$ss.rule}</td>
+                <td>{$ss.need_count}</td>
+                <td align="center">
+                    <a href="javascript:void(0)" account="{$ss['_id']}" class="points">编辑</a>
+                </td>
+            </tr>
+        </foreach>
+        </tbody>
+    </table>
+    <div class="pagination">{$page}</div>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script>
+    $(".points").click(function () {
+        var account = $(this).attr("account");
+        var did = $(this).attr("did");
+        var list = {$listget};
+        var targetGift;
+        for(var i in list){
+            if(list[i]._id==account){
+                targetGift = list[i];
+                break;
+            }
+        }
+        var title = '编辑';
+        var url = "{:U('Setting/setgiftconfig')}";
+        $.confirm({
+            title: title,
+            confirmButton: '确定',
+            cancelButton: '取消',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            columnClass: 'confirm-class',
+            content:'<label>描述：</label><input type="text" id="desc" value = "'+targetGift.desc+'"></br><label>图片名：</label><input type="text" id="icon" value = "'+targetGift.icon+'">' +
+            '</br><label>名称：</label><input type="text" id="name" value = "'+targetGift.name+'"></br><label>所需物品：</label><select id="type">' +
+            '<option value="1" '+(targetGift.type==1?'selected':'')+'>金币</option><option value="2" '+(targetGift.type==2?'selected':'')+'>点券</option></select></br>' +
+            '<label>vip限制：</label><input type="text" id="rule" value = "'+targetGift.rule+'"></br><label>所需数量：</label><input type="text" id="need_count" value = "'+targetGift.need_count+'">',
+            confirm: function () {
+                var cr = $('#type').val();
+                var desc = $('#desc').val();
+                var icon = $('#icon').val();
+                var name = $('#name').val();
+                var need_count = $('#need_count').val();
+                var rule = $('#rule').val();
+                $.ajax({
+                    url: url,
+                    data: {id:account,type:cr,desc:desc,name:name,icon:icon,need_count:need_count,rule:rule},
+                    type: "POST",
+                    success: function (r) {
+                        alert(r.info);
+                        location.reload();
+                    }
+                })
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

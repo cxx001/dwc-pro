@@ -1,0 +1,122 @@
+<admintpl file="header" />
+<link href="__PUBLIC__/simpleboot/css/jquery-confirm.css" rel="stylesheet">
+<script src="__PUBLIC__/simpleboot/bootstrap/js/jquery-confirm.js"></script>
+<style>
+	.confirm-class{
+		width: 40%;
+		margin: auto;
+	}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>{:L('USER_INDEXADMIN_INDEX')}</a></li>
+		</ul>
+		<form class="well form-search" method="post" action="{:U('Indexadmin/index')}">
+			<select name="method">
+				<foreach name="method" item="vo">
+					<option value="{$key}" <if condition="$key eq $chose_method">selected</if> >{$vo}</option>
+				</foreach>
+			</select>
+			关键字： 
+			<input type="text" name="keyword" style="width: 200px;" value="{:I('request.keyword')}" placeholder="昵称">
+			<input type="submit" class="btn btn-primary" value="搜索" />
+			<a class="btn btn-danger" href="{:U('Indexadmin/index')}">清空</a>
+		</form>
+		<php>if(isset($pm)){echo '截止昨日累计充值总额：'.$pm.'元';} </php>
+		<form method="post" class="js-ajax-form">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>昵称</th>
+						<th>VIP</th>
+						<th>金币数量</th>
+						<th>累计充值金额(元)</th>
+						<th>登录时间</th>
+						<th>注册时间</th>
+						<if condition="$admin_id eq 1"><th align="center">{:L('ACTIONS')}</th></if>
+					</tr>
+				</thead>
+				<tbody>
+					<php>$user_statuses=array("0"=>L('USER_STATUS_BLOCKED'),"1"=>L('USER_STATUS_ACTIVATED'),"2"=>L('USER_STATUS_UNVERIFIED'));</php>
+					<foreach name="list" item="vo">
+					<tr>
+						<td>{$vo['name']}</td>
+						<td>{$vo['vip']}</td>
+						<!--<td><img width="25" height="25" src="{:U('user/public/avatar',array('id'=>$vo['id']))}" /></td>-->
+						<td>{$vo.gold}</td>
+						<td>{$vo.totalMoney}</td>
+						<td>{$vo['lastLoginTime']}</td>
+						<td>{$vo.registerTime}</td>
+						<if condition="$admin_id eq 1">
+						<td align="center">
+								<a href="javascript:void(0)" account="{$vo.account}" status="1" class="points">上分</a>|
+								<a href="javascript:void(0)" account="{$vo.account}" status="-1" class="points">下分</a>|
+								<a href="javascript:void(0)" account="{$vo._id}" status='-2' class="points">封号</a>|
+								<a href="javascript:void(0)" account="{$vo._id}" status='-3' class="points">解封</a>
+
+						</td>
+						</if>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+		$(".points").click(function(){
+			var account = $(this).attr("account");
+			var status = $(this).attr("status");
+			var title = status == 1 ? '上分' : '下分';
+			var url = "{:U('Indexadmin/points')}";
+			if(status==-2){
+				url = "{:U('Indexadmin/setFreeze')}";
+			}
+			if(status==-3){
+				url = "{:U('Indexadmin/jcFreeze')}";
+			}
+			$.confirm({
+				title:title,
+				confirmButton: '确定',
+				cancelButton: '取消',
+				confirmButtonClass: 'btn-info',
+				cancelButtonClass: 'btn-danger',
+				columnClass: 'confirm-class',
+				content: (status==-1 || status==1)?'<input type="text" id="points">':'',
+//				content: '',
+				confirm:function(){
+					var points = $("#points").val();
+					if (status!=-2 && status!=-3 && (!points || parseInt(points) <= 0)){
+						alertInfo('请输入正确分值');
+						return false;
+					}
+					$.ajax({
+						url:url,
+						data:{"account":account,"status":status,"points":points},
+						type:"POST",
+						success:function(r){
+							alertInfo(r);
+						}
+					})
+				}
+			});
+
+			function alertInfo(msg){
+				$.confirm({
+					title: 'result',
+					columnClass: 'confirm-class',
+					cancelButton: false,
+					confirmButtonClass: 'btn-danger',
+					content: msg.info?msg.info:msg,
+				});
+			}
+
+
+		})
+
+	</script>
+</body>
+</html>

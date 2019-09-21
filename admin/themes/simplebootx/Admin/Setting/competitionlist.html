@@ -1,0 +1,91 @@
+<admintpl file="header"/>
+<link href="__PUBLIC__/simpleboot/css/jquery-confirm.css" rel="stylesheet">
+<script src="__PUBLIC__/simpleboot/bootstrap/js/jquery-confirm.js"></script>
+<style>
+    .confirm-class {
+        width: 40%;
+        margin: auto;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:U('setting/competitionConfig')}">添加竞猜</a></li>
+        <li class="active"><a href="{:U('setting/competitionlist')}">竞猜开奖</a></li>
+    </ul>
+    <form method="post" class="js-ajax-form">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>竞猜标题</th>
+                <th>开始时间</th>
+                <th>封盘时间</th>
+                <th>赔率A</th>
+                <th>赔率B</th>
+                <th>抽水率</th>
+                <th align="center">{:L('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td>{$vo['title']}</td>
+                    <td>{$vo['begin_time']}</td>
+                    <td>{$vo['end_time']}</td>
+                    <td>{$vo['answer']['0']['rate']}</td>
+                    <td>{$vo['answer']['1']['rate']}</td>
+                    <td>{$vo['wate_rate']}</td>
+                    <td align="center">
+                        <a href="javascript:void(0)" did = "{$vo['_id']}"  account="{$vo['ai']}" class="points">开奖</a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script>
+    $(".points").click(function () {
+        var account = $(this).attr("account");
+        var did = $(this).attr("did");
+        var title = '开奖';
+        var url = "{:U('Setting/opencompe')}";
+        var answer = {$answer};
+        var answerA,answerB;
+        account = answer[account];
+        for(var i in account){
+            if(account[i]._id==1){
+                answerA = account[i];
+            }
+            if(account[i]._id==2){
+                answerB = account[i];
+            }
+        }
+        $.confirm({
+            title: title,
+            confirmButton: '确定',
+            cancelButton: '取消',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            columnClass: 'confirm-class',
+            content:'<label><input name="answer" type="radio" value="1" checked="checked" />'+answerA.title+' </label> <label><input name="answer" type="radio" value="2" />'+answerB.title+' </label> ',
+            confirm: function () {
+                var cr = $('input:radio[name="answer"]:checked').val();
+                $.ajax({
+                    url: url,
+                    data: {id:did,cr:cr},
+                    type: "POST",
+                    success: function (r) {
+                        alert(r.info);
+                        location.reload();
+                    }
+                })
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

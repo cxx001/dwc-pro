@@ -1,0 +1,58 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>系统日志</a></li>
+		</ul>
+		<form class="well form-search" method="post" action="{:U('Log/operate')}">
+			<select name="type">
+				<foreach name="type" item="vo">
+					<option value="{$key}" <if condition="$key eq $chose_type">selected</if> >{$vo}</option>
+				</foreach>
+			</select>
+			关键字： 
+			<input type="text" name="keyword" style="width: 200px;" value="{:I('request.keyword')}" placeholder="管理员ID/玩家ID">
+			<input type="submit" class="btn btn-primary" value="搜索" />
+			<a class="btn btn-danger" href="{:U('Log/operate')}">清空</a>
+		</form>
+		<form method="post" class="js-ajax-form">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>记录ID</th>
+						<th>管理员ID</th>
+						<th>玩家ID</th>
+						<th>日志分类</th>
+						<th>操作类型</th>
+						<th>修改字段</th>
+						<th>原始记录</th>
+						<th>修改后记录</th>
+						<th>IP地址</th>
+						<th>操作时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<php>$user_statuses=array("0"=>L('USER_STATUS_BLOCKED'),"1"=>L('USER_STATUS_ACTIVATED'),"2"=>L('USER_STATUS_UNVERIFIED'));</php>
+					<foreach name="list" item="vo">
+					<tr>
+						<td>{$vo['id']}</td>
+						<td>{$vo['admin_id']}</td>
+						<td>{$vo.player_id}</td>
+						<td>{$type[$vo['type']]}</td>
+						<td>{$vo['action']}</td>
+						<td>{$vo.fields}</td>
+						<td>{$vo.old_data}</td>
+						<td>{$vo.new_data}</td>
+						<td>{$vo.ip}</td>
+						<td>{$vo.create_time}</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

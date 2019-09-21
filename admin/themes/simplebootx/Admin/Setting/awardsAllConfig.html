@@ -1,0 +1,38 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:U('setting/awardsAllConfig')}">奖券全局设置</a></li>
+        <li><a href="{:U('setting/awardsConfig')}">奖券设置</a></li>
+        <li><a href="{:U('setting/giftlist')}">兑换奖品列表</a></li>
+    </ul>
+    <form class="form-horizontal js-ajax-form" method="post" action="{:U('setting/awardsConfig_post')}">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">此次活动总共发放点券为:</label>
+                <div class="controls">
+                    <input type="text" name="total_tickets" value="{$as.max_tickets}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">开始时间:</label>
+                <div class="controls">
+                    <input type="text" name="begin_time" value="{$as.begin_time}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">结束时间:</label>
+                <div class="controls">
+                    <input type="text" name="end_time" value="{$as.end_time}">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary  js-ajax-submit">{:L('SAVE')}</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

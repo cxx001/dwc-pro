@@ -1,0 +1,25 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class=""><a href="{:U('setting/notice')}">广播列表</a></li>
+			<li class="active"><a href="{:U('setting/addnotice')}">发布广播</a></li>
+		</ul>
+		<form class="form-horizontal js-ajax-form" method="post" action="{:U('setting/notice_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="content">内容</label>
+					<div class="controls">
+						<textarea class="form-control" style="width: 70%" rows="7" name="content" id="content"></textarea>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary  js-ajax-submit">{:L('SAVE')}</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

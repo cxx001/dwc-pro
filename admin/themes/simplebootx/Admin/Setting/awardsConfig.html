@@ -1,0 +1,62 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:U('setting/awardsAllConfig')}">奖券全局设置</a></li>
+        <li class="active"><a href="{:U('setting/awardsConfig')}">奖券设置</a></li>
+        <li><a href="{:U('setting/giftlist')}">兑换奖品列表</a></li>
+    </ul>
+    <form class="well form-search" method="post" action="{:U('setting/awardsConfig')}">
+        <select name="method">
+            {$sc}
+        </select>
+        <input type="submit" class="btn btn-primary" value="查询" />
+    </form>
+    <form class="form-horizontal js-ajax-form" method="post" action="{:U('setting/awardsConfig_post')}">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">该游戏可得奖券总数:</label>
+                <div class="controls">
+                    <input type="text" name="max_tickets" value="{$ad.max_tickets}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">每次抽奖所需金币数量:</label>
+                <div class="controls">
+                    <input type="text" name="cost_gold" value="{$ad.cost_gold}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">每次抽奖所得奖券下限:</label>
+                <div class="controls">
+                    <input type="text" name="min_single_ticket" value="{$ad.min_single_ticket}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">每次抽奖所得奖券上限:</label>
+                <div class="controls">
+                    <input type="text" name="single_ticket" value="{$ad.single_ticket}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">中奖概率:</label>
+                <div class="controls">
+                    <input type="text" name="draw_rate" value="{$ad.draw_rate}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">抽取次数上限:</label>
+                <div class="controls">
+                    <input type="text" name="get_times" value="{$ad.get_times}">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary  js-ajax-submit">{:L('SAVE')}</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

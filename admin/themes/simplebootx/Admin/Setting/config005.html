@@ -1,0 +1,99 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <foreach name="games" item="vg">
+            <li <if condition="$gameid eq $vg['id']"> class="active" </if> ><a href="{:U('setting/config',array('gameid'=>$vg['id']))}">{$vg.name}</a></li>
+        </foreach>
+    </ul>
+    <form method="post" class="form-horizontal js-ajax-form" action="{:U('setting/config_post')}">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">游戏名称:</label>
+                <div class="controls">
+                    <input type="text" name="gamename" value="{$gamename}" style="color: #0e0e0e" disabled>
+                    <input type="hidden" name="gameid" value="{$gameid}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">不成一线的概率:</label>
+                <div class="controls">
+                    <input type="text" name="0" value="{$configs['0']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">大小丑的概率:</label>
+                <div class="controls">
+                    <input type="text" name="1" value="{$configs['1']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">小小丑的概率:</label>
+                <div class="controls">
+                    <input type="text" name="2" value="{$configs['2']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">皇冠的概率:</label>
+                <div class="controls">
+                    <input type="text" name="3" value="{$configs['3']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">徽章的概率:</label>
+                <div class="controls">
+                    <input type="text" name="4" value="{$configs['4']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">钥匙的概率:</label>
+                <div class="controls">
+                    <input type="text" name="5" value="{$configs['5']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">酒杯的概率:</label>
+                <div class="controls">
+                    <input type="text" name="6" value="{$configs['6']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">戒指的概率:</label>
+                <div class="controls">
+                    <input type="text" name="7" value="{$configs['7']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">帽子的概率:</label>
+                <div class="controls">
+                    <input type="text" name="8" value="{$configs['8']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">烟斗的概率:</label>
+                <div class="controls">
+                    <input type="text" name="9" value="{$configs['9']['per']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">大小丑的概率:</label>
+                <div class="controls">
+                    <input type="text" name="10" value="{$configs['10']}">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">彩金的概率:</label>
+                <div class="controls">
+                    <input type="text" name="11" value="{$configs['11']}">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" >{:L('SAVE')}</button>
+        </div>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>
